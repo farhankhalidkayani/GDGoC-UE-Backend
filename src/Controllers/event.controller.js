@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
-const Event = require("../Models/event.model.js");
+const Event = require("../Models/events.model.js");
 
 const addEvent = asyncHandler(async (req, res) => {
-  const { title, description, image, color, mainpaage_url } = req.body;
-  if (!title || !description || !image || !color || !mainpaage_url) {
+  const { title, description, image, color, mainpage_url } = req.body;
+  if (!title || !description || !image || !color || !mainpage_url) {
     res.status(400);
     throw new Error("Please enter all the information");
   }
@@ -12,53 +12,58 @@ const addEvent = asyncHandler(async (req, res) => {
     description,
     image,
     color,
-    mainpaage_url,
+    mainpage_url,
   });
+  return res.status(200).json(event);
 });
-const getAllMemebers = asyncHandler(async (req, res) => {
-  const teams = await Team.find({});
-  if (!teams) {
-    return res.status(404).json({ message: "No team members" });
+const getAllEvents = asyncHandler(async (req, res) => {
+  const events = await Event.find({});
+  if (!events) {
+    return res.status(404).json({ message: "No events" });
   }
-  return res.status(200).json(teams);
+  return res.status(200).json(events);
 });
 
-const getMember = asyncHandler(async (req, res) => {
+const getEvent = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const member = await Team.findById(id);
-  if (!member) {
-    return res.status(404).json({ message: "Member not found" });
+  const event = await Event.findById(id);
+  if (!event) {
+    return res.status(404).json({ message: "Event not found" });
   }
-  return res.status(200).json(member);
+  return res.status(200).json(event);
 });
 
-const updateMember = asyncHandler(async (req, res) => {
+const updateEvent = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { name, position, image, linkedin, github, level } = req.body;
-  if (!name || !position || !image || !linkedin || !github || !level) {
+  const { title, description, image, color, mainpage_url } = req.body;
+  if (!title || !description || !image || !color || !mainpage_url) {
     res.status(400);
     throw new Error("Please enter all the information");
   }
-  const member = await Team.findByIdAndUpdate(id, {
-    name,
-    position,
-    image,
-    linkedin,
-    github,
-    level,
-  });
+  const event = await Event.findByIdAndUpdate(
+    id,
+    {
+      title,
+      description,
+      image,
+      color,
+      mainpage_url,
+    },
+    { new: true }
+  );
+  return res.status(200).json(event);
 });
 
-const deleteMember = asyncHandler(async (req, res) => {
+const deleteEvent = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const member = await Team.findByIdAndDelete(id);
-  return res.status(200).json(member);
+  const event = await Event.findByIdAndDelete(id);
+  return res.status(200).json(event);
 });
 
 module.exports = {
-  getAllMemebers,
-  getMember,
-  addMember,
-  updateMember,
-  deleteMember,
+  getAllEvents,
+  getEvent,
+  addEvent,
+  updateEvent,
+  deleteEvent,
 };

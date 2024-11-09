@@ -18,7 +18,7 @@ const eventSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    mainpaage_url: {
+    mainpage_url: {
       type: String,
       require: true,
     },
