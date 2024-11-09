@@ -1,0 +1,30 @@
+{
+  "name": "gdgoc-ue-backend",
+  "version": "1.0.0",
+  "description": "Backend for GDGoC-UE Chapter ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farhankhalidkayani/GDGoC-UE-Backend.git"
+  },
+  "author": "Farhan Khalid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/farhankhalidkayani/GDGoC-UE-Backend/issues"
+  },
+  "homepage": "https://github.com/farhankhalidkayani/GDGoC-UE-Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
